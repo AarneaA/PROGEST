@@ -36,8 +36,27 @@ declaration
 
 expression
     : Variable
+    | Number
+    | String
+    | '(' expression ')'
     ;
 
 Variable
     : [a-zA-Z][a-zA-Z0-9_]*
+    ;
+
+Number
+    :   ('0'|[1-9][0-9]*)('.'[0-9]+)?
+    ;
+
+String
+    :   '"' ~["\n\r]* '"'
+    ;
+
+Comment
+    :   '/*' .*? '*/' -> skip
+    ;
+
+Whitespace
+    :   [ \t\r\n]+ -> skip
     ;
