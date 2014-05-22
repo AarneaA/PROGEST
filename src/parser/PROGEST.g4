@@ -22,8 +22,8 @@ ifSentence
     ;
 
 whileSentence
-    : 'kuni' expression 'tee' '{' sentence '}'
-    | 'tee' '{' sentence '}' 'kuni' expression
+    : 'kuni' expression 'tee' sentence
+    | 'tee' sentence 'kuni' expression
     ;
 
 assignment
@@ -35,11 +35,23 @@ declaration
     ;
 
 expression
-    : Variable
-    | Number
-    | String
-    | '(' expression ')'
+    : expression ('>'|'<'|'>='|'<='|'=='|'!=') expression #Comparison
+    | expression ('+'|'-') expression #AdditionSubtraction
+    | expression ('*'|'/') expression #MultiplicationDivision
+    | Variable '(' (expression (',' expression)*)? ')' #FunctionCall
+    | '-' expressionNegatives #Negatives
+    | Variable #VariableLiteral
+    | Number #NumberLiteral
+    | String #StringLiteral
+    | '(' expression ')' #Expressions
     ;
+    
+expressionNegatives
+	: Number
+	| Variable
+	| '(' expression')'
+	;
+    
 
 Variable
     : [a-zA-Z][a-zA-Z0-9_]*
