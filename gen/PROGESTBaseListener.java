@@ -1,4 +1,5 @@
-// Generated from /Users/taavikala/kool/PROGEST/src/parser/PROGEST.g4 by ANTLR 4.x
+// Generated from PROGEST.g4 by ANTLR 4.2
+package parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -16,26 +17,26 @@ public class PROGESTBaseListener implements PROGESTListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression(@NotNull PROGESTParser.ExpressionContext ctx) { }
+	@Override public void enterNegatives(@NotNull PROGESTParser.NegativesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression(@NotNull PROGESTParser.ExpressionContext ctx) { }
+	@Override public void exitNegatives(@NotNull PROGESTParser.NegativesContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignment(@NotNull PROGESTParser.AssignmentContext ctx) { }
+	@Override public void enterStringLiteral(@NotNull PROGESTParser.StringLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignment(@NotNull PROGESTParser.AssignmentContext ctx) { }
+	@Override public void exitStringLiteral(@NotNull PROGESTParser.StringLiteralContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -49,6 +50,136 @@ public class PROGESTBaseListener implements PROGESTListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDeclaration(@NotNull PROGESTParser.DeclarationContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressions(@NotNull PROGESTParser.ExpressionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressions(@NotNull PROGESTParser.ExpressionsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressionNegatives(@NotNull PROGESTParser.ExpressionNegativesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionNegatives(@NotNull PROGESTParser.ExpressionNegativesContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAdditionSubtraction(@NotNull PROGESTParser.AdditionSubtractionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAdditionSubtraction(@NotNull PROGESTParser.AdditionSubtractionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSentences(@NotNull PROGESTParser.SentencesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSentences(@NotNull PROGESTParser.SentencesContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSentence(@NotNull PROGESTParser.SentenceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSentence(@NotNull PROGESTParser.SentenceContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNumberLiteral(@NotNull PROGESTParser.NumberLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumberLiteral(@NotNull PROGESTParser.NumberLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionCall(@NotNull PROGESTParser.FunctionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionCall(@NotNull PROGESTParser.FunctionCallContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMultiplicationDivision(@NotNull PROGESTParser.MultiplicationDivisionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMultiplicationDivision(@NotNull PROGESTParser.MultiplicationDivisionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterComparison(@NotNull PROGESTParser.ComparisonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitComparison(@NotNull PROGESTParser.ComparisonContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssignment(@NotNull PROGESTParser.AssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignment(@NotNull PROGESTParser.AssignmentContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -81,26 +212,13 @@ public class PROGESTBaseListener implements PROGESTListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSentence(@NotNull PROGESTParser.SentenceContext ctx) { }
+	@Override public void enterVariableLiteral(@NotNull PROGESTParser.VariableLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSentence(@NotNull PROGESTParser.SentenceContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSentences(@NotNull PROGESTParser.SentencesContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSentences(@NotNull PROGESTParser.SentencesContext ctx) { }
+	@Override public void exitVariableLiteral(@NotNull PROGESTParser.VariableLiteralContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -1,4 +1,5 @@
-// Generated from /Users/taavikala/kool/PROGEST/src/parser/PROGEST.g4 by ANTLR 4.x
+// Generated from PROGEST.g4 by ANTLR 4.2
+package parser;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -8,26 +9,26 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface PROGESTListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link PROGESTParser#expression}.
+	 * Enter a parse tree produced by {@link PROGESTParser#Negatives}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpression(@NotNull PROGESTParser.ExpressionContext ctx);
+	void enterNegatives(@NotNull PROGESTParser.NegativesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PROGESTParser#expression}.
+	 * Exit a parse tree produced by {@link PROGESTParser#Negatives}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpression(@NotNull PROGESTParser.ExpressionContext ctx);
+	void exitNegatives(@NotNull PROGESTParser.NegativesContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PROGESTParser#assignment}.
+	 * Enter a parse tree produced by {@link PROGESTParser#StringLiteral}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignment(@NotNull PROGESTParser.AssignmentContext ctx);
+	void enterStringLiteral(@NotNull PROGESTParser.StringLiteralContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PROGESTParser#assignment}.
+	 * Exit a parse tree produced by {@link PROGESTParser#StringLiteral}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignment(@NotNull PROGESTParser.AssignmentContext ctx);
+	void exitStringLiteral(@NotNull PROGESTParser.StringLiteralContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PROGESTParser#declaration}.
@@ -39,6 +40,116 @@ public interface PROGESTListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaration(@NotNull PROGESTParser.DeclarationContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#Expressions}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressions(@NotNull PROGESTParser.ExpressionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#Expressions}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressions(@NotNull PROGESTParser.ExpressionsContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#expressionNegatives}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNegatives(@NotNull PROGESTParser.ExpressionNegativesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#expressionNegatives}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNegatives(@NotNull PROGESTParser.ExpressionNegativesContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#AdditionSubtraction}.
+	 * @param ctx the parse tree
+	 */
+	void enterAdditionSubtraction(@NotNull PROGESTParser.AdditionSubtractionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#AdditionSubtraction}.
+	 * @param ctx the parse tree
+	 */
+	void exitAdditionSubtraction(@NotNull PROGESTParser.AdditionSubtractionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#sentences}.
+	 * @param ctx the parse tree
+	 */
+	void enterSentences(@NotNull PROGESTParser.SentencesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#sentences}.
+	 * @param ctx the parse tree
+	 */
+	void exitSentences(@NotNull PROGESTParser.SentencesContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#sentence}.
+	 * @param ctx the parse tree
+	 */
+	void enterSentence(@NotNull PROGESTParser.SentenceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#sentence}.
+	 * @param ctx the parse tree
+	 */
+	void exitSentence(@NotNull PROGESTParser.SentenceContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#NumberLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumberLiteral(@NotNull PROGESTParser.NumberLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#NumberLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumberLiteral(@NotNull PROGESTParser.NumberLiteralContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#FunctionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(@NotNull PROGESTParser.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#FunctionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(@NotNull PROGESTParser.FunctionCallContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#MultiplicationDivision}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultiplicationDivision(@NotNull PROGESTParser.MultiplicationDivisionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#MultiplicationDivision}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultiplicationDivision(@NotNull PROGESTParser.MultiplicationDivisionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#Comparison}.
+	 * @param ctx the parse tree
+	 */
+	void enterComparison(@NotNull PROGESTParser.ComparisonContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#Comparison}.
+	 * @param ctx the parse tree
+	 */
+	void exitComparison(@NotNull PROGESTParser.ComparisonContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PROGESTParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignment(@NotNull PROGESTParser.AssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PROGESTParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignment(@NotNull PROGESTParser.AssignmentContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PROGESTParser#program}.
@@ -63,26 +174,15 @@ public interface PROGESTListener extends ParseTreeListener {
 	void exitWhileSentence(@NotNull PROGESTParser.WhileSentenceContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PROGESTParser#sentence}.
+	 * Enter a parse tree produced by {@link PROGESTParser#VariableLiteral}.
 	 * @param ctx the parse tree
 	 */
-	void enterSentence(@NotNull PROGESTParser.SentenceContext ctx);
+	void enterVariableLiteral(@NotNull PROGESTParser.VariableLiteralContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PROGESTParser#sentence}.
+	 * Exit a parse tree produced by {@link PROGESTParser#VariableLiteral}.
 	 * @param ctx the parse tree
 	 */
-	void exitSentence(@NotNull PROGESTParser.SentenceContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link PROGESTParser#sentences}.
-	 * @param ctx the parse tree
-	 */
-	void enterSentences(@NotNull PROGESTParser.SentencesContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PROGESTParser#sentences}.
-	 * @param ctx the parse tree
-	 */
-	void exitSentences(@NotNull PROGESTParser.SentencesContext ctx);
+	void exitVariableLiteral(@NotNull PROGESTParser.VariableLiteralContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PROGESTParser#ifSentence}.
