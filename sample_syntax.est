@@ -9,7 +9,7 @@ kui limiit + 5 < 30 siis {
     prindi("Limiit ületatud!");
 };
 
-iga muut i korral vahemikus 2..20 {
+iga i korral vahemikus 2..20 {
     prindi(i);
 };
 
