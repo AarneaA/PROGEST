@@ -12,7 +12,7 @@ public class mainClass {
 		while ((line = reader.readLine()) != null) {
 			code += line;
 		}
-		System.out.println(code);
+		//System.out.println(code);
 		reader.close();
 		PuuTipp astree = PROGESTi.generateAST(code); 
 		PROGESTi.runProgram(astree);
