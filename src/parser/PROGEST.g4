@@ -5,12 +5,13 @@ program
     ;
 
 sentences
-    : sentence (';' sentence)*
+    : sentence ';' (sentence ';')*
     ;
 
 sentence
     : ifSentence
     | whileSentence
+    | forSentence
     | assignment
     | declaration
     | expression
@@ -25,6 +26,10 @@ whileSentence
     : 'kuni' expression 'tee' sentence
     | 'tee' sentence 'kuni' expression
     ;
+    
+forSentence
+	: 'iga' expression 'korral vahemikus' expression '{' sentence '}'
+	;
 
 assignment
     : Variable '=' expression
@@ -38,6 +43,7 @@ expression
     : expression ('>'|'<'|'>='|'<='|'=='|'!=') expression #Comparison
     | expression ('+'|'-') expression #AdditionSubtraction
     | expression ('*'|'/') expression #MultiplicationDivision
+    | expression '..' expression #Range
     | Variable '(' (expression (',' expression)*)? ')' #FunctionCall
     | '-' expressionNegatives #Negatives
     | Variable #VariableLiteral
