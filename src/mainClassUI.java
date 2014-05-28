@@ -36,8 +36,10 @@ public class mainClassUI {
 		JMenu code = new JMenu("Kood");
 		JMenuItem run = new JMenuItem("Jooksuta");
 		JMenuItem clean = new JMenuItem("Tühjenda");
-		
+
+        run.addActionListener(new RunAction());
 		code.add(run);
+        clean.addActionListener(new CleanAction());
 		code.add(clean);
 		menu.add(code);
 		
@@ -95,6 +97,18 @@ public class mainClassUI {
             } catch (IOException ex) {
                 System.out.println("An error occurred while loading the file: " + ex.getMessage());
             }
+        }
+    }
+
+    public static class RunAction extends AbstractAction {
+        public void actionPerformed(ActionEvent e) {
+           System.out.println("Not implemented yet!");
+        }
+    }
+
+    public static class CleanAction extends AbstractAction {
+        public void actionPerformed(ActionEvent e) {
+            input.setText("");
         }
     }
 	
