@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 
 public class mainClassUI {
@@ -31,6 +29,7 @@ public class mainClassUI {
 
         save.addActionListener(new SaveAction());
 		file.add(save);
+        load.addActionListener(new LoadAction());
 		file.add(load);
 		menu.add(file);
 		
@@ -74,7 +73,27 @@ public class mainClassUI {
             try (PrintStream out = new PrintStream(new FileOutputStream(path))) {
                 out.print(code);
             } catch (FileNotFoundException ex) {
-                System.out.println("An Error occurred: " + ex.getMessage());
+                System.out.println("An Error occurred while saving the file: " + ex.getMessage());
+            }
+        }
+    }
+
+    public static class LoadAction extends AbstractAction {
+        public void actionPerformed(ActionEvent e) {
+            FileDialog fd = new FileDialog(mainWindow, "Load", FileDialog.LOAD);
+            fd.setVisible(true);
+            String path = fd.getDirectory() + fd.getFile();
+            try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+                String code = "";
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    code += line;
+                }
+                input.setText(code);
+            } catch (FileNotFoundException ex) {
+                System.out.println("An error occurred while loading the file : " + ex.getMessage());
+            } catch (IOException ex) {
+                System.out.println("An error occurred while loading the file: " + ex.getMessage());
             }
         }
     }
