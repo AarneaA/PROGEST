@@ -1,23 +1,25 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
-import ASTclasses.PuuTipp;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 
 
 public class mainClassUI {
+
+    private static JFrame mainWindow;
+    private static JTextArea input;
+    private static JTextArea output;
+
 	public static void initUI() {
-		JFrame mainWindow = new JFrame();
+		mainWindow = new JFrame();
+        JPanel innerPanel = new JPanel();
+        innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.PAGE_AXIS));
+        mainWindow.add(innerPanel);
 		
 		setUpMenus(mainWindow);
-		setUpTextAreas(mainWindow);
+		setUpTextAreas(innerPanel);
 		setUpMainWindow(mainWindow);
 	}
 	
@@ -26,14 +28,15 @@ public class mainClassUI {
 		JMenu file = new JMenu("Fail");
 		JMenuItem save = new JMenuItem("Salvesta");
 		JMenuItem load = new JMenuItem("Laadi");
-		
+
+        save.addActionListener(new SaveAction());
 		file.add(save);
 		file.add(load);
 		menu.add(file);
 		
 		JMenu code = new JMenu("Kood");
 		JMenuItem run = new JMenuItem("Jooksuta");
-		JMenuItem clean = new JMenuItem("Tühjenda");
+		JMenuItem clean = new JMenuItem("TÃ¼hjenda");
 		
 		code.add(run);
 		code.add(clean);
@@ -42,26 +45,45 @@ public class mainClassUI {
 		mainWindow.setJMenuBar(menu);
 	}
 	
-	public static void setUpTextAreas(JFrame mainWindow) {
+	public static void setUpTextAreas(JPanel innerPanel) {
 		JPanel upper = new JPanel();
 		JPanel lower = new JPanel();
-		mainWindow.getContentPane().add(upper, "North");
-		mainWindow.getContentPane().add(lower, "South");
+        JLabel upper_label = new JLabel("Input");
+        JLabel lower_label = new JLabel("Output");
+        innerPanel.add(upper_label);
+		innerPanel.add(upper);
+        innerPanel.add(lower_label);
+		innerPanel.add(lower);
 		
-		JTextArea input = new JTextArea("Tere", 25, 70);
+		input = new JTextArea("", 25, 70);
 		input.setLineWrap(true);
 		upper.add(input);
 		
-		JTextArea output = new JTextArea("Tere", 25, 70);
+		output = new JTextArea("", 25, 70);
 		output.setLineWrap(false);
+        output.setEditable(false);
 		lower.add(output);
 	}
+
+    public static class SaveAction extends AbstractAction {
+        public void actionPerformed(ActionEvent e) {
+            FileDialog fd = new FileDialog(mainWindow, "Save", FileDialog.SAVE);
+            fd.setVisible(true);
+            String code = input.getText();
+            String path = fd.getDirectory() + fd.getFile();
+            try (PrintStream out = new PrintStream(new FileOutputStream(path))) {
+                out.print(code);
+            } catch (FileNotFoundException ex) {
+                System.out.println("An Error occurred: " + ex.getMessage());
+            }
+        }
+    }
 	
 	public static void setUpMainWindow(JFrame mainWindow) {
 		mainWindow.setTitle("PROGEST IDE");
 		mainWindow.setSize(960, 1000);
 		mainWindow.setLocationRelativeTo(null);
-		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainWindow.pack();
 		mainWindow.setResizable(false);
 		mainWindow.setVisible(true);
