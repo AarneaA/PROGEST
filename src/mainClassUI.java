@@ -1,3 +1,5 @@
+import ASTclasses.PuuTipp;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -61,9 +63,11 @@ public class mainClassUI {
 		upper.add(input);
 		
 		output = new JTextArea("", 25, 70);
+        JScrollPane scrollableOutput = new JScrollPane (
+                output, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		output.setLineWrap(false);
         output.setEditable(false);
-		lower.add(output);
+		lower.add(scrollableOutput);
 	}
 
     public static class SaveAction extends AbstractAction {
@@ -90,6 +94,7 @@ public class mainClassUI {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     code += line;
+                    code += "\n";
                 }
                 input.setText(code);
             } catch (FileNotFoundException ex) {
@@ -102,15 +107,24 @@ public class mainClassUI {
 
     public static class RunAction extends AbstractAction {
         public void actionPerformed(ActionEvent e) {
-           System.out.println("Not implemented yet!");
+            output.setText("");
+            String code = input.getText();
+            JTextAreaOutputStream jtextOut = new JTextAreaOutputStream(output);
+            PrintStream outStream = new PrintStream(jtextOut, true);
+            System.setOut(outStream);
+            PuuTipp astree = PROGESTi.generateAST(code);
+		    PROGESTi.runProgram(astree);
         }
     }
 
     public static class CleanAction extends AbstractAction {
         public void actionPerformed(ActionEvent e) {
             input.setText("");
+            output.setText("");
         }
     }
+
+
 	
 	public static void setUpMainWindow(JFrame mainWindow) {
 		mainWindow.setTitle("PROGEST IDE");
