@@ -13,7 +13,6 @@ sentence
     | whileSentence
     | forSentence
     | assignment
-    | declaration
     | expression
     | '{' sentences '}'
     ;
@@ -33,10 +32,6 @@ forSentence
 
 assignment
     : Variable '=' expression
-    ;
-
-declaration
-    : 'muut' Variable '=' expression
     ;
 
 expression

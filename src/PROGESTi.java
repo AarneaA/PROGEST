@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
@@ -21,7 +20,6 @@ import ASTclasses.LauseteJada;
 import ASTclasses.Literaal;
 import ASTclasses.MurdArvLiteraal;
 import ASTclasses.Muutuja;
-import ASTclasses.MuutujaDeklaratsioon;
 import ASTclasses.Omistamine;
 import ASTclasses.PuuTipp;
 import ASTclasses.SoneLiteraal;
@@ -31,7 +29,6 @@ import parser.PROGESTParser;
 import parser.PROGESTParser.AdditionSubtractionContext;
 import parser.PROGESTParser.AssignmentContext;
 import parser.PROGESTParser.ComparisonContext;
-import parser.PROGESTParser.DeclarationContext;
 import parser.PROGESTParser.ForSentenceContext;
 import parser.PROGESTParser.FunctionCallContext;
 import parser.PROGESTParser.IfSentenceContext;
@@ -106,7 +103,7 @@ public class PROGESTi {
 			 PuuTipp right = (PuuTipp) parseTreeToAst(tree.getChild(2));
 			 return new FunktsiooniKutse(op, Arrays.asList(left, right));
 		}
-		else if(tree instanceof DeclarationContext){
+		/*else if(tree instanceof DeclarationContext){
 			String muutuja = tree.getChild(1).getText();
 			 if(tree.getChildCount() >= 4){
 			 PuuTipp initializer = (PuuTipp) parseTreeToAst(tree.getChild(3));
@@ -116,7 +113,7 @@ public class PROGESTi {
 				 PuuTipp initializer = null;
 				 return new MuutujaDeklaratsioon(muutuja, initializer);
 			 }
-		}
+		}*/
 		else if(tree instanceof AssignmentContext){
 			String muutuja = tree.getChild(0).getText();
 			PuuTipp value = (PuuTipp) parseTreeToAst(tree.getChild(2));
@@ -310,10 +307,10 @@ public class PROGESTi {
 					}
 					return false;
 				}
-				else if (currentNode instanceof MuutujaDeklaratsioon){
+				/*else if (currentNode instanceof MuutujaDeklaratsioon){
 					variableMap.put(((MuutujaDeklaratsioon) currentNode).getMuutujaNimi(), ((MuutujaDeklaratsioon) currentNode).getInitializer());
 					//System.out.println(variableMap);
-				}
+				}*/
 				else if (currentNode instanceof Omistamine){
 					//System.out.println(new Literaal(interpretElement(((Omistamine) currentNode).getAvaldis())).getValue().getClass());
 					variableMap.put(((Omistamine) currentNode).getMuutujaNimi(), new Literaal((interpretElement(((Omistamine) currentNode).getAvaldis()))));

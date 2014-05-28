@@ -1,10 +1,10 @@
-muut nimi = "Taavi";
+nimi = "Taavi";
 
 nimi = "Aarne";
 
 prindi(nimi);
 
-muut limiit = 20;
+limiit = 20;
 
 kui limiit < 30 siis {
 	prindi("Limiit on väiksem kui 30!")
@@ -16,10 +16,10 @@ iga i korral vahemikus 2..20 {
 	prindi(i)
 };
 
-muut vanus = 22;
+vanus = 22;
 
 kuni vanus < 27 tee {
-	prindi("Auto liising kehtib\");
+	prindi("Auto liising kehtib!");
 	vanus = vanus + 1;
 };
 
