@@ -14,19 +14,22 @@ public class FunktsiooniKutse extends PuuTipp {
 		this.arguments = arguments;
 	}
 
-
-	public List<Object> getChildren() {
-		List<Object> result = new ArrayList<Object>();
-		result.add(this.functionName);
-		result.addAll(this.arguments);
-		return result;
-	}
-	
 	public String getFunctionName() { //
 		return functionName;
 	}
 	
 	public List<PuuTipp> getArguments() { //
 		return arguments;
+	}
+
+
+	@Override
+	public List<Object> getChildren() {
+		// TODO Auto-generated method stub
+		//return null;
+		List<Object> result = new ArrayList<Object>();
+		result.add(this.functionName);
+		result.addAll(this.arguments);
+		return result;
 	}
 }

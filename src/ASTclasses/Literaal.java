@@ -12,6 +12,7 @@ public class Literaal<T> extends PuuTipp {
 
     @Override
     public List<Object> getChildren() {
+    	//
         return Arrays.asList((Object)this.value);
     }
 

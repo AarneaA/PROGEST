@@ -43,19 +43,13 @@ import parser.PROGESTParser.StringLiteralContext;
 import parser.PROGESTParser.VariableLiteralContext;
 import parser.PROGESTParser.WhileSentenceContext;
 
-
-
-
-
 public class PROGESTi {
 	private static ParseTree createParseTree(String program) {
-		//Private 
 	    ANTLRInputStream antlrInput = new ANTLRInputStream(program);
 	    PROGESTLexer lexer = new PROGESTLexer(antlrInput);
 	    CommonTokenStream tokens = new CommonTokenStream(lexer);
 	    PROGESTParser parser = new PROGESTParser(tokens);
 	    ParseTree tree = parser.program();
-	    //System.out.println(tree.toStringTree(parser));
 	    return tree;
 	}
 	
@@ -91,7 +85,7 @@ public class PROGESTi {
 		else if(tree instanceof NegativesContext){
 			List argumendid = new ArrayList();
 			argumendid.add(parseTreeToAst(tree.getChild(0).getChild(1)));
-			//System.out.println(tree.getChild(0).getChild(1).getText());
+
 			return new FunktsiooniKutse("-", argumendid);
 		}
 		else if(tree instanceof MultiplicationDivisionContext 
@@ -103,17 +97,6 @@ public class PROGESTi {
 			 PuuTipp right = (PuuTipp) parseTreeToAst(tree.getChild(2));
 			 return new FunktsiooniKutse(op, Arrays.asList(left, right));
 		}
-		/*else if(tree instanceof DeclarationContext){
-			String muutuja = tree.getChild(1).getText();
-			 if(tree.getChildCount() >= 4){
-			 PuuTipp initializer = (PuuTipp) parseTreeToAst(tree.getChild(3));
-			 return new MuutujaDeklaratsioon(muutuja, initializer);
-			 }
-			 else {
-				 PuuTipp initializer = null;
-				 return new MuutujaDeklaratsioon(muutuja, initializer);
-			 }
-		}*/
 		else if(tree instanceof AssignmentContext){
 			String muutuja = tree.getChild(0).getText();
 			PuuTipp value = (PuuTipp) parseTreeToAst(tree.getChild(2));
@@ -126,9 +109,7 @@ public class PROGESTi {
 			return new IgaLause(variable, range, body);
 		}
 		else if(tree instanceof WhileSentenceContext){
-			//TODO:handle when statement is before expression
 			if(tree.getChild(1) instanceof ComparisonContext){
-			//System.out.println(tree.getChild(1).getClass());
 				PuuTipp tingimus = (PuuTipp) parseTreeToAst(tree.getChild(1));
 				PuuTipp stmt = (PuuTipp) parseTreeToAst(tree.getChild(3));
 				return new KuniLause(tingimus, stmt);
@@ -143,7 +124,6 @@ public class PROGESTi {
 			PuuTipp tingimus = (PuuTipp) parseTreeToAst(tree.getChild(1));
 			PuuTipp thenBranch = (PuuTipp) parseTreeToAst(tree.getChild(4));
 			PuuTipp elseBranch = (PuuTipp) parseTreeToAst(tree.getChild(8));
-			//System.out.println(tree.getChild(8).getText());
 			return new KuiLause(tingimus, thenBranch, elseBranch);
 		}
 		else if (tree instanceof SentenceContext){
@@ -182,35 +162,31 @@ public class PROGESTi {
 	}
 	
 	public static PuuTipp generateAST(String Code){
-		//System.out.println(createParseTree(Code).getText());
 		PuuTipp AST = parseTreeToAst(createParseTree(Code));
 		return AST;
 	}
 	static Map<String,Object> variableMap = new HashMap<String, Object>();
 	public static Object interpretElement(PuuTipp tree){
-		//System.out.println("Starting");
-		//System.out.println(tree);
 		if(tree instanceof ArvLiteraal){
 			return ((ArvLiteraal) tree).getValue();
 		}
 		else if(tree instanceof Muutuja){
-			//System.out.println(variableMap.get(((Muutuja) tree).getName()));
 			return ((Literaal) variableMap.get(((Muutuja) tree).getName())).getValue();
 		}
 		else if(tree instanceof FunktsiooniKutse){
+			int left = (int) interpretElement(((FunktsiooniKutse) tree).getArguments().get(0));
+			int right = (int) interpretElement(((FunktsiooniKutse) tree).getArguments().get(1));
 		if(((FunktsiooniKutse) tree).getFunctionName().equals("+")){
-			//System.out.println("Addition");
-			//TODO: handle following operations with floats
-			return (int)(interpretElement(((FunktsiooniKutse) tree).getArguments().get(0))) + (int)(interpretElement(((FunktsiooniKutse) tree).getArguments().get(1)));
+			return left+right;
 		}
 		else if(((FunktsiooniKutse) tree).getFunctionName().equals("-")){
-			return (int)interpretElement(((FunktsiooniKutse) tree).getArguments().get(0)) - (int)interpretElement(((FunktsiooniKutse) tree).getArguments().get(1));
+			return left - right;
 		}
 		else if(((FunktsiooniKutse) tree).getFunctionName().equals("*")){
-			return (int)interpretElement(((FunktsiooniKutse) tree).getArguments().get(0)) * (int)interpretElement(((FunktsiooniKutse) tree).getArguments().get(1));
+			return left * right;
 		}
 		else if(((FunktsiooniKutse) tree).getFunctionName().equals("/")){
-			return (int)interpretElement(((FunktsiooniKutse) tree).getArguments().get(0)) / (int)interpretElement(((FunktsiooniKutse) tree).getArguments().get(1));
+			return left / right;
 		}
 		else{
 		return null;
@@ -221,23 +197,17 @@ public class PROGESTi {
 		}
 		else{
 		List<Object> treeList = tree.getChildren();
-		//Map<String, Object> variableMap = new HashMap<String, Object>();
-		//System.out.println(tree.toString());
 		for(int i = 0; i< treeList.size(); i++){
 			Object currentNode = treeList.get(i);
-			//System.out.println(currentNode.getClass());
 			if(currentNode instanceof AvaldisLause){
-				//System.out.println(((AvaldisLause) currentNode).getChildren());
 				interpretElement((AvaldisLause) currentNode);
 			}
 			else if(currentNode instanceof KuniLause){
-				//System.out.println(((KuniLause) currentNode).getCondition());
 				while((boolean) interpretElement(((KuniLause) currentNode))){
 					interpretElement(((KuniLause) currentNode).getBody());
 				}
 			}
 			else if(currentNode instanceof KuiLause){
-				//System.out.println(((KuiLause) currentNode).getCondition());
 				if((boolean) interpretElement(((KuiLause) currentNode))){
 					interpretElement(((KuiLause) currentNode).getSiis());
 				}
@@ -251,12 +221,10 @@ public class PROGESTi {
 				int end = (int) interpretElement((PuuTipp) ((IgaLause) currentNode).getRange().getChildren().get(2));	
 				for(int o = start; o < end; o++){
 					variableMap.put(((Muutuja) ((IgaLause) currentNode).getVariable()).getName(),new ArvLiteraal(o));
-					//System.out.println(variableMap);
 					interpretElement(((IgaLause) currentNode).getBody());
 			}
 			}
 			else if(currentNode instanceof FunktsiooniKutse){
-				//System.out.println(((FunktsiooniKutse) currentNode).getFunctionName());
 				List<PuuTipp> currentArguments = ((FunktsiooniKutse) currentNode).getArguments();
 				if(((FunktsiooniKutse) currentNode).getFunctionName().equals("prindi")){
 					if(((FunktsiooniKutse) currentNode).getArguments().get(0) instanceof SoneLiteraal || 
@@ -265,17 +233,14 @@ public class PROGESTi {
 						System.out.println(((FunktsiooniKutse) currentNode).getArguments().get(0).getChildren().get(0).toString());
 					}
 					else if(((FunktsiooniKutse) currentNode).getArguments().get(0) instanceof Muutuja){
-						//System.out.println(variableMap);
 						System.out.println(((Literaal<Object>) variableMap.get(((FunktsiooniKutse) currentNode).getArguments().get(0).getChildren().get(0))).getValue());
 					}
 					else if(((FunktsiooniKutse) currentNode).getArguments().get(0) instanceof FunktsiooniKutse){
-						//System.out.println(((FunktsiooniKutse) currentNode).getArguments().get(0));
+
 						System.out.println(interpretElement(((FunktsiooniKutse) currentNode).getArguments().get(0)));
 					}
 					}
 					else if(((FunktsiooniKutse) currentNode).getFunctionName().equals("<")){
-						//System.out.println("Here");
-						//System.out.println(interpretElement(((FunktsiooniKutse) currentNode).getArguments().get(0)));
 						if((int) interpretElement(((FunktsiooniKutse) currentNode).getArguments().get(0)) < (int) interpretElement(((FunktsiooniKutse) currentNode).getArguments().get(1))){
 						return true;
 						}
@@ -307,24 +272,11 @@ public class PROGESTi {
 					}
 					return false;
 				}
-				/*else if (currentNode instanceof MuutujaDeklaratsioon){
-					variableMap.put(((MuutujaDeklaratsioon) currentNode).getMuutujaNimi(), ((MuutujaDeklaratsioon) currentNode).getInitializer());
-					//System.out.println(variableMap);
-				}*/
+
 				else if (currentNode instanceof Omistamine){
-					//System.out.println(new Literaal(interpretElement(((Omistamine) currentNode).getAvaldis())).getValue().getClass());
 					variableMap.put(((Omistamine) currentNode).getMuutujaNimi(), new Literaal((interpretElement(((Omistamine) currentNode).getAvaldis()))));
-					//System.out.println(variableMap);
 				}
-				/*else if(currentNode instanceof Muutuja){
-					//System.out.println("HERE");
-					//System.out.println(variableMap);
-					return variableMap.get(((Muutuja) currentNode).getName());
-				}*/
-				//return false;
 			}
-		
-			//System.out.println(currentNode);
 		
 		return treeList;
 		}

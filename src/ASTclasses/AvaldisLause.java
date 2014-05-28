@@ -11,11 +11,16 @@ public class AvaldisLause extends PuuTipp {
 		this.avaldis = avaldis;
 	}
 	
-	public List<Object> getChildren() {
-		return Arrays.asList((Object)this.avaldis);
-	}
 	
 	public PuuTipp getAvaldis() {
 		return avaldis;
+	}
+
+
+	@Override
+	public List<Object> getChildren() {
+		// TODO Auto-generated method stub
+		//return null;
+		return Arrays.asList((Object)this.avaldis);
 	}
 }

@@ -17,6 +17,7 @@ public class KuiLause extends PuuTipp {
 
 	@Override
 	public List<Object> getChildren() {
+		//
 		return Arrays.asList((Object)condition, siis, muidu);
 	}
 	

@@ -12,7 +12,7 @@ public class LauseteJada extends PuuTipp {
 	}
 
 	@Override
-	public List<Object> getChildren() {
+	public List<Object> getChildren() { //
 		return new ArrayList<Object>(statements); 
 	}
 }
