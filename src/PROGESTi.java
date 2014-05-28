@@ -154,7 +154,7 @@ public class PROGESTi {
 			return parseTreeToAst(tree.getChild(0));
 		}
 		else{
-			System.out.println("Unhandled nodetype");
+			System.out.println("Viga koodis: Tundmatu meetod!");
 			System.out.println(tree.getClass());
 			System.out.println(tree.getText());
 		return null;
