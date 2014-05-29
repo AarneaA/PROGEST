@@ -58,13 +58,13 @@ public class mainClassUI {
         innerPanel.add(lower_label);
 		innerPanel.add(lower);
 		
-		input = new JTextArea("", 25, 70);
+		input = new JTextArea("", 18, 70);
         JScrollPane scrollableInput = new JScrollPane (
                 input, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		input.setLineWrap(true);
 		upper.add(scrollableInput);
 		
-		output = new JTextArea("", 25, 70);
+		output = new JTextArea("", 18, 70);
         JScrollPane scrollableOutput = new JScrollPane (
                 output, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		output.setLineWrap(false);
