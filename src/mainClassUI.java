@@ -58,17 +58,29 @@ public class mainClassUI {
         innerPanel.add(lower_label);
 		innerPanel.add(lower);
 		
-		input = new JTextArea("", 25, 70);
+		input = new JTextArea("", 18, 70);
+        JScrollPane scrollableInput = new JScrollPane (
+                input, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		input.setLineWrap(true);
-		upper.add(input);
+		upper.add(scrollableInput);
 		
-		output = new JTextArea("", 25, 70);
+		output = new JTextArea("", 18, 70);
         JScrollPane scrollableOutput = new JScrollPane (
                 output, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		output.setLineWrap(false);
         output.setEditable(false);
 		lower.add(scrollableOutput);
 	}
+
+    public static void setUpMainWindow(JFrame mainWindow) {
+        mainWindow.setTitle("PROGEST IDE");
+        mainWindow.setSize(960, 1000);
+        mainWindow.setLocationRelativeTo(null);
+        mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainWindow.pack();
+        mainWindow.setResizable(false);
+        mainWindow.setVisible(true);
+    }
 
     public static class SaveAction extends AbstractAction {
         public void actionPerformed(ActionEvent e) {
@@ -123,17 +135,4 @@ public class mainClassUI {
             output.setText("");
         }
     }
-
-
-	
-	public static void setUpMainWindow(JFrame mainWindow) {
-		mainWindow.setTitle("PROGEST IDE");
-		mainWindow.setSize(960, 1000);
-		mainWindow.setLocationRelativeTo(null);
-		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		mainWindow.pack();
-		mainWindow.setResizable(false);
-		mainWindow.setVisible(true);
-	}
-
 }
